@@ -1,2 +1,2 @@
-#this is a private project managed by kevin wan and his team
+#this is a private project managed by Kevin Wan and his team
 #update this as a test

@@ -1,0 +1,41 @@
+1.开发平台搭建：
+    scripts:   python2.7 
+               请下载这个版本：http://www.activestate.com/activepython/downloads
+    python包安装工具：
+    		   pip install
+    framework: django 1.4
+    		   https://docs.djangoproject.com/en/dev/topics/install/
+	ide: eclipse
+			   请下载这个版本：
+			   http://www.eclipse.org/downloads/packages/eclipse-ide-javascript-web-developers/heliosr
+               然后安装Egit插件：
+               http://www.vogella.com/articles/EGit/article.html
+    git教程：  http://wiki.eclipse.org/EGit/User_Guide#Create_Repository
+    github:    https://github.com/eyelee/pingjia_repo
+              
+2. 安装Pinjia （平价网） 项目的依赖环境和包
+    
+	Mezzanine==1.1.4
+    	$ pip install -U mezzanine
+        请参考： https://github.com/stephenmcd/mezzanine 安装所依赖的包。
+        （包含了south, django, PIL(python image library) )
+	Scrapy>=0.14
+		$ pip install Scrapy
+		请参考：http://doc.scrapy.org/en/0.14/intro/install.html 安装所依赖包。
+		（依赖包括 Twisted, w3lib, lxml/libxm2,simplejson,pyopenssl)
+	django-dynamic-scraper
+	    （注明： download the source code from GitHub
+	            https://github.com/holgerd77/django-dynamic-scraper
+	            and install DDS with: 
+	            python setup.py install
+	      ）
+	    请参考：http://django-dynamic-scraper.readthedocs.org/en/latest/index.html
+	    安装项目依赖的包
+	    使用文档： http://django-dynamic-scraper.readthedocs.org/en/latest/getting_started.html
+	    
+3. 以下为分布作业调度，可选
+	django-celery
+	(http://docs.dotcloud.com/tutorials/python/django-celery/
+	 依赖 django-kombu）
+	rabbitmq
+

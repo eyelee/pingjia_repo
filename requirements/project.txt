@@ -1,1 +1,11 @@
 Mezzanine==1.1.4
+Django>=1.2
+Scrapy>=0.14
+django-celery
+django-kombu
+PIL
+South
+django-dynamic-scraper
+
+
+

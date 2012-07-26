@@ -2,7 +2,7 @@ from django.db.utils import IntegrityError
 from scrapy import log
 from scrapy.exceptions import DropItem
 from dynamic_scraper.models import SchedulerRuntime
-from open.models import ArticleItem
+#from open.models import ArticleItem
 
 class DjangoWriterPipeline(object):
     

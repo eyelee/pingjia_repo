@@ -252,6 +252,7 @@ INSTALLED_APPS = (
     "djcelery",
     "dynamic_scraper",
     "open",
+    "testapp",
 )
 
 # List of processors used by RequestContext to populate the context.

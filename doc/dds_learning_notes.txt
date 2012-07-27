@@ -1,0 +1,61 @@
+class DjangoBaseSpider(BaseSpider):
+    
+    name = None
+    mandatory_vars = ['ref_object', 'scraper', 'scrape_url',]
+    allowed_domains = []
+    start_urls = []
+    conf = {
+        "DO_ACTION": False,
+        "RUN_TYPE": 'SHELL',
+        "LOG_ENABLED": True,
+        "LOG_LEVEL": 'ERROR',
+        "LOG_LIMIT": 250,
+    }
+    command  = 'scrapy crawl SPIDERNAME -a id=REF_OBJECT_ID '
+    command += '[-a do_action=(yes|no) -a run_type=(TASK|SHELL)'
+    command += ' -a max_items_read={Int} -a max_items_save={Int}]'
+    ...
+
+
+class DjangoSpider(DjangoBaseSpider):
+    def __init__(self, *args, **kwargs):
+        self.mandatory_vars.append('scraped_obj_class')
+        self.mandatory_vars.append('scraped_obj_item_class')
+        super(DjangoSpider, self).__init__(self, *args, **kwargs)
+        self._check_scraper_config()
+        self._set_start_urls(self.scrape_url)
+        self.scheduler = Scheduler(self.scraper.scraped_obj_class.
+         scraper_scheduler_conf)
+        self.from_detail_page = False
+        self.loader = None
+        self.items_read_count = 0
+        self.items_save_count = 0
+        msg = "Spider for " + self.ref_object.__class__.__name__ + " \"" + str(self.
+         ref_object) + "\" (" + str(self.ref_object.id) + ") initialized."
+        self.log(msg, log.INFO)
+        ...
+
+notes: 
+        self.mandatory_vars
+        from  DjangoBaseSpider:
+			ref_object
+        	scraper
+        	scraper_url
+        from DjangoSpider
+        	scraped_obj_class        	 
+        	scraped_obj_item_class 
+
+an example spider: 
+
+class ProductSpider(DjangoSpider):
+    
+    name = 'product_spider'
+
+    def __init__(self, *args, **kwargs):
+        self._set_ref_object(Source, **kwargs)
+        self.scraper = self.ref_object.scraper
+        self.scrape_url = self.ref_object.url
+        self.scheduler_runtime = self.ref_object.scraper_runtime
+        self.scraped_obj_class = Product
+        self.scraped_obj_item_class = ProductItem
+        super(ProductSpider, self).__init__(self, *args, **kwargs)

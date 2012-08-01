@@ -39,7 +39,7 @@
 					<div class="span9" style="position:relative;">
 						<form class="form-search row-fluid">
 							<div class="span9">
-							     <input id="search" type="text" class="span12 input-medium search-query"  data-provide="typeahead" data-items="4" />
+							     <input id="search" type="text" class="span12 input-medium search-query" autocomplete="off" >
 							</div>
 							<div class="span3">
 							     <button type="submit" class="btn search-btn" >平价一下</button>
@@ -93,7 +93,9 @@
 <script src="/static/js/globle.js"></script>
 <script type="text/javascript">
 
-$(document).ready(function() { 
+$(document).ready(function() {
+	  $("#search").focus();
+	  
 	  $("body").click(function(){
 		  $(".relative-search").hide();
 	  })

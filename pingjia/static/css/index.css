@@ -8,6 +8,6 @@ ul li {list-style:none;}
 .relative-list:hover{background-color:rgb(192,192,192)}
 .relative-list a{color:rgb(0,0,0);margin:2px 4px;line-height:26px;}
 .relative-list a:hover{text-decoration:none;}
-.footer {font-size:14px;margin-top:150px;}
-.footer-div {margin-left:200px !important;}
+.footer {font-size:14px;margin-top:100px;}
+.footer-div {margin-left:230px !important;font-size:12px;}
 .footer-info {float:left;margin:0 10px;}

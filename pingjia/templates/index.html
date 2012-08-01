@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>平价网，最权威公平的价格指南</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Example of Fixed Layout with Twitter Bootstrap version 2.0 from w3resource.com">
+<meta name="author" content="">
+<!-- Le styles -->
+<link href="/static/docs/assets/css/bootstrap.css" rel="stylesheet">
+<link href="/static/docs/assets/css/example-fixed-layout.css" rel="stylesheet">
+<link href="/static/docs/assets/css/example-fluid-layout.css" rel="stylesheet">
+<link href="/static/css/index.css" rel="stylesheet">
+<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<!-- Le fav and touch icons -->
+<link rel="shortcut icon" href="/static/docs/examples/images/favicon.ico">
+<link rel="apple-touch-icon" href="/static/docs/examples/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/static/docs/examples/images/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/static/docs/examples/images/apple-touch-icon-114x114.png">
+</head>
+<body>
+
+
+<div class="container">
+	<div class="row-fluid">      
+		<div class="span12">
+			<div class="leaderboard" style="background-image:none;">
+				<div class="span2">
+				</div>
+				<div>
+				    <img src="/static/img/front.png"></img>
+				</div>
+				<div class="row">
+					<div class="span2">
+					</div>
+					<div class="span9" style="position:relative;">
+						<form class="form-search row-fluid">
+							<div class="span9">
+							     <input id="search" type="text" class="span12 input-medium search-query"  data-provide="typeahead" data-items="4" />
+							</div>
+							<div class="span3">
+							     <button type="submit" class="btn search-btn" >平价一下</button>
+							</div>
+						</form>
+						<div class="relative-search span9" style="display:none;" >
+							<ul class="relative-ul">
+							</ul>
+						</div>          
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<footer class="footer">
+	<div class="container">
+		 <div class="row-fluid">
+			  <div class="span8 footer-div" >
+				  <ul>
+				      <li class="footer-info"><a href="">平价向导</a></li>
+				      <li class="footer-info"><a href="">招聘信息</a></li>
+				      <li class="footer-info"><a href="">关于我们</a></li>
+				      <li class="footer-info"><a href="">联系我们</a></li>
+				      <li class="footer-info"><a href="">合作网站</a></li>
+				      <li class="footer-info"><a href="">API</a></li>
+				      <li class="footer-info"><a href="">博客</a></li>
+				  </ul>
+			  </div>
+		 </div>
+	</div>
+</footer>
+ <!-- /container -->
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="/static/docs/assets/js/jquery.js"></script>
+<script src="/static/docs/assets/js/bootstrap-transition.js"></script>
+<script src="/static/docs/assets/js/bootstrap-alert.js"></script>
+<script src="/static/docs/assets/js/bootstrap-modal.js"></script>
+<script src="/static/docs/assets/js/bootstrap-dropdown.js"></script>
+<script src="/static/docs/assets/js/bootstrap-scrollspy.js"></script>
+<script src="/static/docs/assets/js/bootstrap-tab.js"></script>
+<script src="/static/docs/assets/js/bootstrap-tooltip.js"></script>
+<script src="/static/docs/assets/js/bootstrap-popover.js"></script>
+<script src="/static/docs/assets/js/bootstrap-button.js"></script>
+<script src="/static/docs/assets/js/bootstrap-collapse.js"></script>
+<script src="/static/docs/assets/js/bootstrap-carousel.js"></script>
+<script src="/static/docs/assets/js/bootstrap-typeahead.js"></script>
+<script src="/static/js/globle.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function() { 
+	  $("body").click(function(){
+		  $(".relative-search").hide();
+	  })
+	  
+	  $(".relative-list").live("click",function(){
+		 var value=$("a",$(this)).html();
+		 $("#search").val(value);
+	  })
+	  
+	  $("#search").bind("keyup",function(){
+		  $(".relative-search").hide();
+		  $(".relative-ul").html("");
+		  var kw=$("#search").val();
+		  kw=trim(kw);
+		  if(kw=='')
+			   return;
+		  var query={};
+		  query["kw"]=kw;
+		  $.ajax({
+				url: "ajax_match/",
+				type: "POST",
+				data: query,
+				dataType: "json",
+				success: function(result){
+					var length=result.values.length;
+					if(length==0)
+						return;
+					for (i=0;i<length;i++){
+						$(".relative-ul").append('<li class="relative-list"><a>'+result.values[i]+'</a></li>');
+						}
+					$(".relative-search").show();
+					} 
+			});
+	  });
+
+})
+</script>
+</body>
+</html>

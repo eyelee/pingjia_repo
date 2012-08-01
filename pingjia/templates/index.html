@@ -95,7 +95,6 @@
 
 $(document).ready(function() {
 	  $("#search").focus();
-	  
 	  $("body").click(function(){
 		  $(".relative-search").hide();
 	  })
@@ -124,7 +123,7 @@ $(document).ready(function() {
 					if(length==0)
 						return;
 					for (i=0;i<length;i++){
-						$(".relative-ul").append('<li class="relative-list"><a>'+result.values[i]+'</a></li>');
+						$(".relative-ul").append('<li class="relative-list"><a href="#">'+result.values[i]+'</a></li>');
 						}
 					$(".relative-search").show();
 					} 

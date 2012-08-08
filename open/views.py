@@ -8,7 +8,10 @@ from django.utils import simplejson
 from django.shortcuts import render_to_response
 from function import Average,Normalprice
 from django.forms.models import model_to_dict
+from django.views.decorators.csrf import csrf_exempt
 
+
+@csrf_exempt
 def ajax_match(request):
     success = False
     to_return = {'msg':u'No POST data sent.' }

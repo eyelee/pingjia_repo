@@ -39,4 +39,3 @@
 	 依赖 django-kombu）
 	rabbitmq
 
-yemao test here

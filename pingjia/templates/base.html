@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{% block title %}{% endblock %}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="{% block meta_description %}{% endblock %}">
+<meta name="author" content="">
+<!-- Le styles -->
+<link href="/static/docs/assets/css/bootstrap.css" rel="stylesheet">
+<link href="/static/docs/assets/css/example-fixed-layout.css" rel="stylesheet">
+<link href="/static/docs/assets/css/example-fluid-layout.css" rel="stylesheet">
+<link href="/static/css/base.css" rel="stylesheet">
+{% block css %}{% endblock %}
+
+<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<!-- Le fav and touch icons -->
+<link rel="shortcut icon" href="/static/docs/examples/images/favicon.ico">
+<link rel="apple-touch-icon" href="/static/docs/examples/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/static/docs/examples/images/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/static/docs/examples/images/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top" >
+<div class="navbar-inner" style="height:46px;">
+<div class="container">
+<div class="row-fluid">
+<div class="span5">
+<div style="padding-top: 11px;position:relative;">  
+<form class="form-search" action="/search">
+<input id="header-search" name="kw" type="text" value={{ kw }} class="span9 input-medium search-query" style="margin: 0 auto;" placeholder="想买什么？" autocomplete="off" > 
+</form>
+<div class="header-relative-search span9" style="display:none;" >
+<ul class="header-relative-ul">
+</ul>
+</div>   
+</div>
+</div>
+
+<div class="span3">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse" >
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</a>
+<a class="brand" href="#"><img src="img/logo_220x33_stroke.png" width="220" height="33" alt="w3resource logo" /></a>
+  
+
+</div>
+<div class="span4"
+
+<div class="nav-collapse span4">
+<ul class="nav row-fluid">  
+<li class="span8"></li>
+<li class="span4"><a href="#me">注册</a></li>    
+</ul>  
+</div><!--/.nav-collapse -->
+</div>
+
+</div>
+
+
+
+</div>
+</div>
+</div>
+<div class="container">
+{% block content %}{% endblock %}
+</div>
+<footer class="footer">
+	<div class="container">
+		 <div class="row-fluid">
+			  <div class="span8 footer-div" >
+				  <ul>
+				      <li class="footer-info"><a href="">平价向导</a></li>
+				      <li class="footer-info"><a href="">招聘信息</a></li>
+				      <li class="footer-info"><a href="">关于我们</a></li>
+				      <li class="footer-info"><a href="">联系我们</a></li>
+				      <li class="footer-info"><a href="">合作网站</a></li>
+				      <li class="footer-info"><a href="">API</a></li>
+				      <li class="footer-info"><a href="">博客</a></li>
+				  </ul>
+			  </div>
+		 </div>
+	</div>
+</footer>
+ <!-- /container -->
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="/static/docs/assets/js/jquery.js"></script>
+<script src="/static/docs/assets/js/bootstrap-transition.js"></script>
+<script src="/static/docs/assets/js/bootstrap-alert.js"></script>
+<script src="/static/docs/assets/js/bootstrap-modal.js"></script>
+<script src="/static/docs/assets/js/bootstrap-dropdown.js"></script>
+<script src="/static/docs/assets/js/bootstrap-scrollspy.js"></script>
+<script src="/static/docs/assets/js/bootstrap-tab.js"></script>
+<script src="/static/docs/assets/js/bootstrap-tooltip.js"></script>
+<script src="/static/docs/assets/js/bootstrap-popover.js"></script>
+<script src="/static/docs/assets/js/bootstrap-button.js"></script>
+<script src="/static/docs/assets/js/bootstrap-collapse.js"></script>
+<script src="/static/docs/assets/js/bootstrap-carousel.js"></script>
+<script src="/static/docs/assets/js/bootstrap-typeahead.js"></script>
+<script src="/static/js/globle.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	  $("body").click(function(){
+		  $(".header-relative-search").hide();
+	  })
+	  
+	  $(".header-relative-list").live("click",function(){
+		 var value=$("a",$(this)).html();
+		 $("#header-search").val(value);
+		 $("#header-search").parent().submit();
+	  })
+	  
+	  $("#header-search").bind("keyup",function(){
+		  $(".header-relative-search").hide();
+		  $(".header-relative-ul").html("");
+		  var kw=$("#header-search").val();
+		  kw=trim(kw);
+		  if(kw=='')
+			   return;
+		  var query={};
+		  query["kw"]=kw;
+		  $.ajax({
+				url: "/ajax_match/",
+				type: "POST",
+				data: query,
+				dataType: "json",
+				success: function(result){
+					var length=result.values.length;
+					if(length==0)
+						return;
+					for (i=0;i<length;i++){
+						$(".header-relative-ul").append('<li class="header-relative-list"><a href="#">'+result.values[i]+'</a></li>');
+						}
+					$(".header-relative-search").show();
+					} 
+			});
+	  });
+
+})
+</script>
+{% block js %}{% endblock %}
+</body>
+</html>

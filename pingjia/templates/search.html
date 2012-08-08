@@ -1,0 +1,201 @@
+{% extends "base.html" %}
+{% load open_tags %}
+{% block css %}<link href="/static/css/search.css" rel="stylesheet">{% endblock %}
+{% block content %}
+<div class="span12">
+<div class="tabbable">
+<ul class="breadcrumb breadsearch">
+  <li>
+    <a href="/">主页</a> <span class="divider">/</span>
+  </li>
+  <!--<li>
+    <a href="#">汽车</a> <span class="divider">/</span>
+  </li>
+  <li>
+    <a href="#">BMW</a> <span class="divider">/</span>
+  </li>
+  <li>
+    <a href="#">5系列</a> <span class="divider">/</span>
+  </li>-->
+  <li class="active">{{ kw }}</li>
+</ul>
+<div class="row">
+  <div class="span9">
+   <h1>{{ kw }}</h1>
+  </div>
+  <div class="span3">
+  <button type="submit" class="btn btn-primary" href="#">
+  <i class="icon-plus-sign icon-white"></i>
+  添加到观察列表
+  </button>
+  </div>
+</div>
+
+
+<ul class="nav nav-tabs">
+<li class="active"><a href="#report" data-toggle="tab">价格报告</a></li>
+<li class=""><a href="#data" data-toggle="tab">全部数据</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="report">
+ <div class="tab-content">
+  <div class="row">
+    <div class="span6">
+<h3>平价网参考价</h3>
+     <div class="big_price">
+     ￥{{ average_price }}
+     </div>
+ <h3>可以接受的价格区间</h3>
+     <div class="price_range">
+	 {% price_range products %}
+	 </div>
+
+<form class="form-horizontal inline well" id="review-mini" style="padding-bottom:5px;">
+<div class="control-group">
+<label class="control-label" style=" font-size: 15px;">你推荐这个产品吗</label>
+<div class="controls">
+<label class="radio inline">
+<input type="radio" class="radio s" name="recommended" value="1"> 是
+</label>
+<label class="radio inline">
+<input type="radio" class="radio s" name="recommended" value="0">否
+</label>
+</div>
+</div>
+</form>
+
+<h3>产品年代</h3>
+
+<table width="100%" class="table condensed">
+<tr>
+<td width="33%"><a href="/cars/bmw/5-series/1991/">1991</a></td>
+<td width="33%"><a href="/cars/bmw/5-series/1992/">1992</a></td>
+<td width="33%"><a href="/cars/bmw/5-series/1993/">1993</a></td>
+</tr>
+<tr>
+<td width="33%"><a href="/cars/bmw/5-series/1994/">1994</a></td>
+<td width="33%"><a href="/cars/bmw/5-series/1995/">1995</a></td>
+<td width="33%"><a href="/cars/bmw/5-series/1997/">1997</a></td>
+</tr>
+<tr>
+<td width="33%"><a href="/cars/bmw/5-series/1998/">1998</a></td>
+<td width="33%"><a href="/cars/bmw/5-series/1999/">1999</a></td>
+<td width="33%"><a href="/cars/bmw/5-series/2000/">2000</a></td>
+</tr>
+<tr>
+<td width="33%"><a href="/cars/bmw/5-series/2001/">2001</a></td>
+<td width="33%"><a href="/cars/bmw/5-series/2002/">2002</a></td>
+<td width="33%"><a href="/cars/bmw/5-series/2003/">2003</a></td>
+</tr>
+<tr>
+<td width="33%"><a href="/cars/bmw/5-series/2004/">2004</a></td>
+<td width="33%"><a href="/cars/bmw/5-series/2005/">2005</a></td>
+<td width="33%"><a href="/cars/bmw/5-series/2006/">2006</a></td>
+</tr>
+<tr>
+<td width="33%"><a href="/cars/bmw/5-series/2007/">2007</a></td>
+<td width="33%"><a href="/cars/bmw/5-series/2008/">2008</a></td>
+<td width="33%"><a href="/cars/bmw/5-series/2009/">2009</a></td>
+</tr>
+<tr>
+<td width="33%"><a href="/cars/bmw/5-series/2010/">2010</a></td>
+<td width="33%"><a href="/cars/bmw/5-series/2011/">2011</a></td>
+</tr>
+</table>
+
+<hr />
+<h3>
+评估报告所用数据
+<span class="small">(<a href="#data" data-toggle="tab" class="">更多</a>)</span>
+</h3>
+<table class="table table-condensed">
+<thead>
+<tr><th width="85%">标题</th><th>价格</th></tr>
+</thead>
+<tbody>
+{% for item in excerpt_products %}
+<tr>
+<td><a href="{{ item.url }}" target="_blank">{{ item.title }}</a></td>
+<td>￥{% show_normalprice item.price %}</td>
+</tr>
+{% endfor %}                   
+</tbody>
+</table>
+<hr />
+<h3 class="mb10">我想买</h3>
+<form class="form-inline" id="email-subscribe" style="margin-bottom: 2px"><input type="text" id="email-addr" placeholder="请输入邮箱">
+              &nbsp;
+<input type="submit" value="提交" class="btn" />
+<input type="hidden" id="product_id" value="107505" />
+<input type="hidden" id="keyword_id" name="keyword" value="2008 BMW 5 Series" />
+</form>
+<p>当有价格合适的货源发布时，我们会给您发邮件</p>
+ </div>
+<div class="span5">
+<div id="myCarousel" class="carousel slide" >
+            <div class="carousel-inner">
+              <div class="item active">
+                <img src="/static/docs/assets/img/bootstrap-mdo-sfmoma-01.jpg" alt="">
+                <!--<div class="carousel-caption">
+                  <h4>First Thumbnail label</h4>
+                  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                </div>  -->
+              </div>
+              <div class="item">
+                <img src="/static/docs/assets/img/bootstrap-mdo-sfmoma-02.jpg" alt="">
+               <!--<div class="carousel-caption">
+                  <h4>Second Thumbnail label</h4>
+                  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                </div>-->
+              </div>
+              <div class="item">
+                <img src="/static/docs/assets/img/bootstrap-mdo-sfmoma-03.jpg" alt="">
+                <!--<div class="carousel-caption">
+                  <h4>Third Thumbnail label</h4>
+                  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                </div>-->
+              </div>
+            </div>
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+</div>
+<hr>
+ <div id="charts"><h3>年度比较</h3>
+ <div id="chart2" class="chart placeholder" style="height: 200px;">
+ {% showrect %}
+ </div>
+ <hr>
+ <h3>价格趋势</h3>
+ <div id="price_time" class="chart placeholder" style="height: 280px;">
+ {% showcircle %}
+ </div>
+</div>
+</div>
+</div>
+   
+ </div>
+
+</div>
+<div class="tab-pane" id="data">
+<h3>数据</h3>
+<p>以下是评估价格所用到的数据</p>
+<table class="table table-striped">
+<thead><tr><th>标题</th><th>价格</th><th>交易地点</th><th>发布时间</th></tr></thead>
+<tbody>
+{% for item in products %}
+<tr>
+<td><a href="{{ item.url }}" target="_blank">{{ item.title }}</a></td>
+<td>￥{% show_normalprice item.price %}</td>
+<td>上海</td>
+<td>{{ item.time }}</td>
+</tr>
+{% endfor %} 
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+{% endblock %}
+

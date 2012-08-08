@@ -1,0 +1,28 @@
+<svg height="{{svgheight}}" width="{{svgwidth}}">
+<g transform="translate(10,190)">
+<g>
+<text dx="-.75em" style="font-size:8pt;" y="2" x="34.20578147966683">$200</text>
+<line style="stroke-width: 1; stroke: rgb(221, 221, 221);" y2="-190" y1="-10" x2="34.20578147966683" x1="34.20578147966683"></line>
+</g>
+<g>
+<text dx="-.75em" style="font-size:8pt;" y="2" x="121.90788829005392">$400</text>
+<line style="stroke-width: 1; stroke: rgb(221, 221, 221);" y2="-190" y1="-10" x2="121.90788829005392" x1="121.90788829005392"></line>
+</g>
+<g>
+<text dx="-.75em" style="font-size:8pt;" y="2" x="209.60999510044098">$600</text>
+<line style="stroke-width: 1; stroke: rgb(221, 221, 221);" y2="-190" y1="-10" x2="209.60999510044098" x1="209.60999510044098"></line>
+</g>
+<g>
+<text dx="-.75em" style="font-size:8pt;" y="2" x="297.31210191082806">$800</text>
+<line style="stroke-width: 1; stroke: rgb(221, 221, 221);" y2="-190" y1="-10" x2="297.31210191082806" x1="297.31210191082806"></line>
+</g>
+<line style="stroke: rgb(221, 221, 221); stroke-width: 1;" y2="-20.988391968557472" y1="-20.988391968557472" x2="368" x1="10"></line>
+<line style="stroke: rgb(221, 221, 221); stroke-width: 1;" y2="-54.79515287340931" y1="-54.79515287340931" x2="368" x1="10"></line>
+<line style="stroke: rgb(221, 221, 221); stroke-width: 1;" y2="-88.60191377826114" y1="-88.60191377826114" x2="368" x1="10"></line>
+<line style="stroke: rgb(221, 221, 221); stroke-width: 1;" y2="-122.40867468311298" y1="-122.40867468311298" x2="368" x1="10"></line>
+<line style="stroke: rgb(221, 221, 221); stroke-width: 1;" y2="-156.2154355879648" y1="-156.2154355879648" x2="368" x1="10"></line>
+<line style="stroke:black;stroke-width:1;" y2="-10" x2="368" y1="-10" x1="10"></line>
+<line y2="-190" x2="10" y1="-10" x1="10" style="stroke:black;stroke-width:1;"></line>
+<path style="stroke-width: 5;stroke:steelblue;fill:none;" d="{% for item in points %}{{item.tag}}{{item.point_x}},-{{item.point_y}}{% endfor %}"></path>
+</g>
+</svg>

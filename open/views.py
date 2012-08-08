@@ -1,6 +1,13 @@
-from models import Category
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+import re
+from models import Category,Product
+from django.db.models import Q
 from django.http import HttpResponseRedirect, HttpResponseServerError, HttpResponse
 from django.utils import simplejson
+from django.shortcuts import render_to_response
+from function import Average,Normalprice
+from django.forms.models import model_to_dict
 
 def ajax_match(request):
     success = False
@@ -22,3 +29,48 @@ def ajax_match(request):
         return HttpResponse(serialized, mimetype="application/json")
     else:
         return HttpResponseServerError(serialized, mimetype="application/json")
+    
+def search(request):
+    if request.method=="GET":
+        get=request.GET.copy()
+        if get.has_key("kw"):
+            kw=get['kw'].strip()
+            if kw:
+                kws=re.split(r'\s+',kw)
+                #kws=re.split(r'[^\w\x80-\xff]+',kw)
+                kws=list(set(kws))
+                if kws.count(''):
+                    kws.remove('')
+                    #return HttpResponse(kws)
+                if kws:
+                    products=Product.objects.all()
+                    #products.query.group_by = ['time']  
+                    for item in kws:
+                        products=products.filter(title__contains=item)
+                    #products=products.exclude(time="车商店铺")
+                         
+                    products=products.order_by('-time')[0:50]  
+                    products_dict=[]
+                    for item in products: 
+                        product=model_to_dict(item)
+                        products_dict.append(product)
+                    products=products_dict
+                    excerpt_products= products[0:5]
+                    #return HttpResponse(products)
+                    if len(products):
+                        price=[]
+                        for item in products:
+                            if item['price'] is None:
+                                continue
+                            if Normalprice(item['price']) is None:
+                                continue 
+                            price.append(Normalprice(item['price']))
+                        average_price=Average(price)
+                    else:
+                        return render_to_response("nothingfound.html",locals())      
+                else:
+                    return render_to_response("nothingfound.html",locals())
+            else:
+                return HttpResponseRedirect('/')
+            return render_to_response("search.html",locals())
+        

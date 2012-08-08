@@ -1,0 +1,19 @@
+<svg height="{{svgheight}}" width="{{svgwidth}}">
+<g transform="translate(0,0)">
+<line style="stroke: rgb(221, 221, 221); stroke-width: 1;" y2="10" y1="10" x2="368" x1="10"></line>
+<line style="stroke: rgb(221, 221, 221); stroke-width: 1;" y2="38.340418437942816" y1="38.340418437942816" x2="368" x1="10"></line>
+<line style="stroke: rgb(221, 221, 221); stroke-width: 1;" y2="66.68083687588563" y1="66.68083687588563" x2="368" x1="10"></line>
+<line style="stroke: rgb(221, 221, 221); stroke-width: 1;" y2="95.02125531382845" y1="95.02125531382845" x2="368" x1="10"></line>
+<line style="stroke: rgb(221, 221, 221); stroke-width: 1;" y2="123.36167375177128" y1="123.36167375177128" x2="368" x1="10"></line>
+<line style="stroke: rgb(221, 221, 221); stroke-width: 1;" y2="151.70209218971408" y1="151.70209218971408" x2="368" x1="10"></line>
+{% for item in data %}
+<rect style="cursor: pointer;fill:steelblue;" width="{{ rectwidth }}" y="{{ item.rect_y_position }}" height="{{ item.rectheight }}" x="{{item.rect_x_position}}"></rect>
+{% endfor %}
+{% for item in data %}
+<text y="{{ item.time_y_position }}" x="{{ item.time_x_position }}" class="barLabel" style="fill:rgb(255,255,255);font-size:13px;">{{item.time}}</text>
+{% endfor %}
+{% for item in data %}
+<text style="cursor: pointer;font-size:8pt;" y="{{ item.price_y_position }}" x="{{ item.price_x_position }}" class="value">${{item.price}}</text>
+{% endfor %}
+</g>
+</svg>

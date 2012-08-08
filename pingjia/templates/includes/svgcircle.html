@@ -1,0 +1,46 @@
+<svg height="{{svgheight}}" width="{{svgwidth}}">
+<g transform="translate(10,270)">
+<line y2="-10" x2="-12667.049899678299" y1="-10" x1="-12667.05035591056" style="stroke:black;stroke-width:1;"></line>
+<g>
+<line y2="-10" y1="-10" x2="378" x1="20" style="stroke: rgb(217, 217, 217); stroke-width: 1;"></line>
+<text text-anchor="right" dx="-.5em" dy=".3em" y="-10" x="0" style="font-size:8pt;"></text>
+</g>
+<g>
+<line y2="-51.66319473377219" y1="-51.66319473377219" x2="378" x1="20" style="stroke: rgb(217, 217, 217); stroke-width: 1;"></line>
+<text text-anchor="right" dx="-.5em" dy=".3em" y="-51.66319473377219" x="0" style="font-size:8pt;">$2k</text>
+</g>
+<g>
+<line y2="-93.32638946754437" y1="-93.32638946754437" x2="378" x1="20" style="stroke: rgb(217, 217, 217); stroke-width: 1;"></line>
+<text text-anchor="right" dx="-.5em" dy=".3em" y="-93.32638946754437" x="0" style="font-size:8pt;">$4k</text>
+</g>
+<g>
+<line y2="-134.98958420131657" y1="-134.98958420131657" x2="378" x1="20" style="stroke: rgb(217, 217, 217); stroke-width: 1;"></line>
+<text text-anchor="right" dx="-.5em" dy=".3em" y="-134.98958420131657" x="0" style="font-size:8pt;">$6k</text>
+</g>
+<g>
+<line y2="-176.65277893508875" y1="-176.65277893508875" x2="378" x1="20" style="stroke: rgb(217, 217, 217); stroke-width: 1;"></line>
+<text text-anchor="right" dx="-.5em" dy=".3em" y="-176.65277893508875" x="0" style="font-size:8pt;">$8k</text>
+</g>
+<g>
+<line y2="-218.31597366886095" y1="-218.31597366886095" x2="378" x1="20" style="stroke: rgb(217, 217, 217); stroke-width: 1;"></line>
+<text text-anchor="right" dx="-.5em" dy=".3em" y="-218.31597366886095" x="0" style="font-size:8pt;">$10k</text>
+</g>
+<g>
+<line y2="-259.97916840263315" y1="-259.97916840263315" x2="378" x1="20" style="stroke: rgb(217, 217, 217); stroke-width: 1;"></line>
+<text text-anchor="right" dx="-.5em" dy=".3em" y="-259.97916840263315" x="0" style="font-size:8pt;">$12k</text>
+</g>
+{% for item in datepoints %}
+<g>
+<line y2="-270" y1="-10" x2="{{item.datepoint_x}}" x1="{{item.datepoint_x}}" style="stroke: rgb(217, 217, 217); stroke-width: 1;"></line>
+<text dy=".15em" dx="-1.8em" x="{{item.datepoint_x}}" text-anchor="bottom" style="font-size:8pt;">{{item.datepoint_str}}</text>
+</g>
+{% endfor %}
+<text style="font-size:8pt;" y="2" x="151.2"></text>
+<line y2="-300" x2="20" y1="-10" x1="20" style="stroke:black;stroke-width:1;"></line>
+<line y2="-10" x2="368" y1="-10" x1="20" style="stroke:black;stroke-width:1;"></line>
+{% for item in data %}
+<circle r="3" style="fill: rgb(68, 68, 68);" cy="-{{item.circle_y_position}}" cx="{{item.circle_x_position}}"></circle>
+{% endfor %}
+<line y2="-{{average_line_y2}}" y1="-{{average_line_y1}}" x2="{{average_line_x2}}" x1="{{average_line_x1}}" style="stroke: steelblue; stroke-width: 3;"></line>
+</g>
+</svg>

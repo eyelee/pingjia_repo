@@ -1,5 +1,3 @@
-
-ul li {list-style:none;}
 #search {height:40px;font-size:14px;}
 .search-btn {padding:10px 15px 10px 15px;}
 .relative-search {position:absolute;top:40px;left:-13px;border:1px solid rgb(127,129,130);background-color:white;}
@@ -8,6 +6,3 @@ ul li {list-style:none;}
 .relative-list:hover{background-color:rgb(192,192,192);}
 .relative-list a{color:rgb(0,0,0);margin:2px 4px;line-height:26px;}
 .relative-list a:hover{text-decoration:none;}
-.footer {font-size:14px;margin-top:100px;}
-.footer-div {margin-left:230px !important;font-size:12px;}
-.footer-info {float:left;margin:0 10px;}

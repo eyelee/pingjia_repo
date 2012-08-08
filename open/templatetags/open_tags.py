@@ -54,28 +54,6 @@ def showrect(context):
 @register.inclusion_tag("includes/svgcircle.html", takes_context=True)
 def showcircle(context):
     dateformat='%Y年%m月%d日'
-    data=[{'time':'2005/7/10','price':'6800'},
-          {'time':'2005/7/15','price':'6800'},
-          {'time':'2005/8/5','price':'7600'},
-          {'time':'2005/8/10','price':'7800'},
-          {'time':'2005/8/13','price':'7900'},
-          {'time':'2005/9/10','price':'8900'},
-          {'time':'2005/9/13','price':'7800'},
-          {'time':'2005/9/23','price':'6800'},
-          {'time':'2005/10/12','price':'7800'},
-          {'time':'2005/10/16','price':'7500'},
-          {'time':'2005/11/20','price':'8800'},
-          {'time':'2005/11/20','price':'8800'},
-          {'time':'2005/12/17','price':'9800'},
-          {'time':'2006/1/19','price':'10800'},
-          {'time':'2006/1/20','price':'12600'},
-          {'time':'2006/1/28','price':'9800'},
-          {'time':'2006/2/14','price':'8900'},
-          {'time':'2006/2/17','price':'8800'},
-          {'time':'2006/3/11','price':'9200'},
-          {'time':'2006/3/17','price':'9200'},
-          {'time':'2006/3/21','price':'9200'},
-         ]
     data=context['products']
     product={}
     products=[]
@@ -242,4 +220,19 @@ def show_normalprice(price):
         return
     if Normalprice(price) is None:
         return
-    return Normalprice(price)      
+    return Normalprice(price) 
+
+@register.simple_tag
+def average_price(datalist):
+    if not datalist:
+        return
+    price=[]
+    for item in datalist:
+        if item['price'] is None:
+            continue
+        if Normalprice(item['price']) is None:
+            continue
+        price.append(Normalprice(item['price']))
+    if price:
+        average_price=Average(price)
+        return average_price

@@ -58,19 +58,12 @@ def search(request):
                     excerpt_products= products[0:5]
                     #return HttpResponse(products)
                     if len(products):
-                        price=[]
-                        for item in products:
-                            if item['price'] is None:
-                                continue
-                            if Normalprice(item['price']) is None:
-                                continue 
-                            price.append(Normalprice(item['price']))
-                        average_price=Average(price)
+                        return render_to_response("search.html",locals())
                     else:
                         return render_to_response("nothingfound.html",locals())      
                 else:
                     return render_to_response("nothingfound.html",locals())
             else:
                 return HttpResponseRedirect('/')
-            return render_to_response("search.html",locals())
+            
         

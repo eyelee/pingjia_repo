@@ -13,7 +13,7 @@ def Average(datalist):
     return result
 
 def Normalprice(price):
-    resource_price=re.search('\d+(\.\d+)?',price)
+    resource_price=re.search('\d+(\.\d+)?',str(price))
     if resource_price is not None:
         friendly_price=float(resource_price.group())
         normal_price=int(friendly_price*10000)
